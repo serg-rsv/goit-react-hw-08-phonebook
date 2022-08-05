@@ -1,22 +1,21 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem } from '../../redux/contacts-action';
 import { useState } from 'react';
+import { useGetContactsQuery, useAddContactMutation } from 'redux/contactsApi';
 import { Form } from './Form.styled';
 import { Button } from 'styles/Button.styled';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
-  const contacts = useSelector(state => state.contacts.items);
-  const dispatch = useDispatch();
+  const [phone, setPhone] = useState('');
+  const { data: contacts } = useGetContactsQuery();
+  const [addContact] = useAddContactMutation();
 
   const handleChange = e => {
     switch (e.target.name) {
       case 'name':
         setName(e.target.value);
         break;
-      case 'number':
-        setNumber(e.target.value);
+      case 'phone':
+        setPhone(e.target.value);
         break;
 
       default:
@@ -30,8 +29,8 @@ export const ContactForm = () => {
 
     const normalizeName = name.toLowerCase();
     const isExist = contacts
-      .map(contact => contact.contactName)
-      .some(contactName => contactName.toLowerCase() === normalizeName);
+      .map(contact => contact.name)
+      .some(name => name.toLowerCase() === normalizeName);
 
     if (isExist) {
       alert(`${name} is already in contacts.`);
@@ -39,10 +38,10 @@ export const ContactForm = () => {
       return;
     }
 
-    dispatch(addItem(name, number));
+    addContact({ name, phone });
 
     setName('');
-    setNumber('');
+    setPhone('');
   };
 
   return (
@@ -64,11 +63,11 @@ export const ContactForm = () => {
         Number
         <input
           type="tel"
-          name="number"
+          name="phone"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={number}
+          value={phone}
           onChange={handleChange}
         />
       </label>
