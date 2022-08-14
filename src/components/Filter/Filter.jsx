@@ -1,9 +1,9 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { filterItems } from '../../redux/contacts-action';
+import { filterItems } from '../../redux/filterAction';
 import { SubTitle } from 'styles/Titles.styled';
 
 export const Filter = () => {
-  const filter = useSelector(state => state.contacts.filter);
+  const filter = useSelector(state => state.filter);
   const dispatch = useDispatch();
 
   return (

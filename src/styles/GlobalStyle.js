@@ -30,8 +30,17 @@ p {
   margin: 0;
 }
 
+a{
+  text-decoration: none;
+  &:hover,:focus{
+    text-decoration: underline;
+  }
+}
+
 ul{
   padding: 0;
+  margin: 0;
+  list-style: none;
 }
 
 .message{

@@ -1,16 +1,12 @@
 import styled from 'styled-components';
 
-const List = styled.ul`
-  width: 300px;
-  li {
+export const Header = styled.header`
+  padding: 8px 16px;
+  border-bottom: 1px solid black;
+  margin-bottom: 24px;
+  & ul {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    :not(:last-child) {
-      margin-bottom: 8px;
-    }
   }
 `;
-
-export { List };

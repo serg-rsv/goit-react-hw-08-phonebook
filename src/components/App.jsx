@@ -1,39 +1,57 @@
-import { Routes, Route } from 'react-router-dom';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { AppBar } from './AppBar/AppBar';
+import { Routes, Route, Navigate } from 'react-router-dom';
 
-import { useGetContactsQuery } from 'redux/contactsApi';
+import AppView from 'views/AppView';
+import HomeView from 'views/HomeView';
+import LoginView from 'views/LoginView';
+import RegisterView from 'views/RegisterView';
+import ContactsView from 'views/ContactsView';
+
+import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
+import { PublicRouter } from 'components/PublicRouter/PublicRouter';
 
 import { GlobalStyle } from 'styles/GlobalStyle';
-import { TitleMain, TitleSecond } from 'styles/Titles.styled';
-import { Section } from 'styles/Section.styled';
 
 export const App = () => {
-  const { data, isLoading } = useGetContactsQuery();
-
   return (
-    <Section>
+    <>
       <GlobalStyle />
-      <AppBar />
       <Routes>
-        <Route path="/" element={<HomeView />} />
-        <Route path="/contacts" element={<ContactsView />} />
-        <Route path="/register" element={<RegisterView />} />
-        <Route path="/login" element={<LoginView />} />
+        <Route path="/" element={<AppView />}>
+          <Route
+            index
+            element={
+              <PublicRouter>
+                <HomeView />
+              </PublicRouter>
+            }
+          />
+          <Route
+            path="contacts"
+            element={
+              <PrivateRoute>
+                <ContactsView />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="login"
+            element={
+              <PublicRouter restricted>
+                <LoginView />
+              </PublicRouter>
+            }
+          />
+          <Route
+            path="register"
+            element={
+              <PublicRouter restricted>
+                <RegisterView />
+              </PublicRouter>
+            }
+          />
+        </Route>
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-      {/* <TitleMain>Phonebook</TitleMain>
-      <ContactForm />
-      <TitleSecond>Contacts</TitleSecond>
-      <Filter />
-      {isLoading ? (
-        <p className="message">Loading...</p>
-      ) : data.length > 0 ? (
-        <ContactList />
-      ) : (
-        <p className="message">Contacts list is empty</p>
-      )} */}
-    </Section>
+    </>
   );
 };

@@ -5,17 +5,17 @@ import { Button } from 'styles/Button.styled';
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
   const { data: contacts } = useGetContactsQuery();
-  const [addContact] = useAddContactMutation();
+  const [addContact, { isLoading }] = useAddContactMutation();
 
   const handleChange = e => {
     switch (e.target.name) {
       case 'name':
         setName(e.target.value);
         break;
-      case 'phone':
-        setPhone(e.target.value);
+      case 'number':
+        setNumber(e.target.value);
         break;
 
       default:
@@ -38,10 +38,10 @@ export const ContactForm = () => {
       return;
     }
 
-    addContact({ name, phone });
+    addContact({ name, number });
 
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -63,16 +63,18 @@ export const ContactForm = () => {
         Number
         <input
           type="tel"
-          name="phone"
+          name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={phone}
+          value={number}
           onChange={handleChange}
         />
       </label>
 
-      <Button type="submit">Add contact</Button>
+      <Button type="submit" disabled={isLoading}>
+        Add contact
+      </Button>
     </Form>
   );
 };
