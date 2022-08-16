@@ -16,9 +16,7 @@ const NavBar = () => {
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          <li>
-            <NavLink to="/contacts">Contacts</NavLink>
-          </li>
+          <li>{isLoggedIn && <NavLink to="/contacts">Contacts</NavLink>}</li>
           {isLoggedIn ? <UserMenu /> : <AuthBar />}
         </ul>
       </nav>
