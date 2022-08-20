@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux';
+
+import List from '@mui/material/List';
+
 import { useGetContactsQuery } from 'redux/contactsApi';
 import { Contact } from 'components/Contact/Contact';
-import { List } from './List.styled';
 
 export const ContactList = () => {
   const filterQuery = useSelector(state => state.filter);
