@@ -1,10 +1,14 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+
 import { useLoginMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
-
-// import { Button } from 'styles/Button.styled';
-// import { Form } from 'components/ContactForm/Form.styled';
 
 const LoginView = () => {
   const [formState, setFormState] = useState({
@@ -37,37 +41,45 @@ const LoginView = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit}
+    <Box
+      component="form"
       action="submit"
-      style={{
+      onSubmit={handleSubmit}
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start',
+        alignItems: 'center',
       }}
     >
-      <label>
-        Email
-        <input
+      <FormControl>
+        <InputLabel htmlFor="email">Email</InputLabel>
+        <Input
+          id="email"
           type="email"
           name="email"
           onChange={handleChange}
           value={formState.email}
+          required
+          size="small"
         />
-      </label>
-      <label>
-        Password
-        <input
+      </FormControl>
+      <FormControl>
+        <InputLabel htmlFor="password">Password</InputLabel>
+        <Input
+          id="password"
           type="password"
           name="password"
           onChange={handleChange}
           value={formState.password}
+          required
+          size="small"
         />
-      </label>
-      <button type="submit" disabled={isLoading}>
+      </FormControl>
+      <Button variant="outlined" type="submit" disabled={isLoading}>
         Login
-      </button>
-    </form>
+      </Button>
+    </Box>
   );
 };
 

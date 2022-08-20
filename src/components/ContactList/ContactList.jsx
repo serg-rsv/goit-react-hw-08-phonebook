@@ -1,4 +1,7 @@
 import { useSelector } from 'react-redux';
+
+import List from '@mui/material/List';
+
 import { useGetContactsQuery } from 'redux/contactsApi';
 import { Contact } from 'components/Contact/Contact';
 
@@ -13,10 +16,10 @@ export const ContactList = () => {
     ) ?? [];
 
   return (
-    <ul>
+    <List>
       {filteredContacts.map(({ id, name, number }) => {
         return <Contact key={id} id={id} name={name} number={number} />;
       })}
-    </ul>
+    </List>
   );
 };

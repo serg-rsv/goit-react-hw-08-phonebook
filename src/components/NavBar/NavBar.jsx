@@ -97,13 +97,19 @@ const NavBar = () => {
               }}
             >
               <MenuItem onClick={handleCloseNavMenu}>
-                <Typography component={Link} to="/" textAlign="center">
+                <Typography
+                  sx={{ textDecoration: 'none' }}
+                  component={Link}
+                  to="/"
+                  textAlign="center"
+                >
                   Home
                 </Typography>
               </MenuItem>
               {isLoggedIn && (
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography
+                    sx={{ textDecoration: 'none' }}
                     component={Link}
                     to="/contacts"
                     textAlign="center"
@@ -114,7 +120,12 @@ const NavBar = () => {
               )}
               {!isLoggedIn && (
                 <MenuItem onClick={handleCloseNavMenu}>
-                  <Typography component={Link} to="/login" textAlign="center">
+                  <Typography
+                    sx={{ textDecoration: 'none' }}
+                    component={Link}
+                    to="/login"
+                    textAlign="center"
+                  >
                     Login
                   </Typography>
                 </MenuItem>
@@ -122,6 +133,7 @@ const NavBar = () => {
               {!isLoggedIn && (
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Typography
+                    sx={{ textDecoration: 'none' }}
                     component={Link}
                     to="/register"
                     textAlign="center"
@@ -158,14 +170,21 @@ const NavBar = () => {
               onClick={handleCloseNavMenu}
               sx={{ my: 2, color: 'white', display: 'block' }}
             >
-              <Link to="/">Home</Link>
+              <Link to="/" style={{ textDecoration: 'none', color: '#fff' }}>
+                Home
+              </Link>
             </Button>
             {isLoggedIn && (
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
               >
-                <Link to="/contacts">Contacts</Link>
+                <Link
+                  to="/contacts"
+                  style={{ textDecoration: 'none', color: '#fff' }}
+                >
+                  Contacts
+                </Link>
               </Button>
             )}
             {!isLoggedIn && <AuthBar handleCloseNavMenu={handleCloseNavMenu} />}

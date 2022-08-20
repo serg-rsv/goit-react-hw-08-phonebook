@@ -3,6 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useSignupMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
 
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+
 const RegisterView = () => {
   const [formState, setFormState] = useState({
     name: '',
@@ -36,46 +42,57 @@ const RegisterView = () => {
   };
 
   return (
-    <form
+    <Box
+      component="form"
       action="submit"
       onSubmit={handleSubmit}
-      style={{
+      sx={{
+        '& > :not(style)': { m: 1, width: '25ch' },
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'flex-start',
+        alignItems: 'center',
       }}
     >
-      <label>
-        Name
-        <input
+      <FormControl>
+        <InputLabel htmlFor="name">Name</InputLabel>
+        <Input
+          id="name"
           type="text"
           name="name"
           onChange={handleChange}
           value={formState.name}
+          required
+          size="small"
         />
-      </label>
-      <label>
-        Email
-        <input
+      </FormControl>
+      <FormControl>
+        <InputLabel htmlFor="email">Email</InputLabel>
+        <Input
+          id="email"
           type="email"
           name="email"
           onChange={handleChange}
           value={formState.email}
+          required
+          size="small"
         />
-      </label>
-      <label>
-        Password
-        <input
+      </FormControl>
+      <FormControl>
+        <InputLabel htmlFor="password">Password</InputLabel>
+        <Input
+          id="password"
           type="password"
           name="password"
           onChange={handleChange}
           value={formState.password}
+          required
+          size="small"
         />
-      </label>
-      <button type="submit" disabled={isLoading}>
-        Login
-      </button>
-    </form>
+      </FormControl>
+      <Button variant="outlined" type="submit" disabled={isLoading}>
+        Register
+      </Button>
+    </Box>
   );
 };
 

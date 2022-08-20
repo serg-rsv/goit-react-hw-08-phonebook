@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
 
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
@@ -18,7 +18,7 @@ const ContactsView = () => {
 
   return (
     <>
-      <Box>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'center' }}>
         <Filter />
         <IconButton
           type="button"
@@ -27,7 +27,7 @@ const ContactsView = () => {
         >
           <PersonAddIcon />
         </IconButton>
-      </Box>
+      </Toolbar>
 
       <ContactList />
       <CommonModal open={isOpen} handleClose={() => setIsOpen(false)}>

@@ -10,13 +10,17 @@ const AuthBar = ({ handleCloseNavMenu }) => {
         onClick={handleCloseNavMenu}
         sx={{ my: 2, color: 'white', display: 'block' }}
       >
-        <Link to="login">Login</Link>
+        <Link to="login" style={{ textDecoration: 'none', color: '#fff' }}>
+          Login
+        </Link>
       </Button>
       <Button
         onClick={handleCloseNavMenu}
         sx={{ my: 2, color: 'white', display: 'block' }}
       >
-        <Link to="register">Register</Link>
+        <Link to="register" style={{ textDecoration: 'none', color: '#fff' }}>
+          Register
+        </Link>
       </Button>
     </>
   );
