@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useGetContactsQuery } from 'redux/contactsApi';
 import { Contact } from 'components/Contact/Contact';
-import { List } from './List.styled';
 
 export const ContactList = () => {
   const filterQuery = useSelector(state => state.filter);
@@ -14,10 +13,10 @@ export const ContactList = () => {
     ) ?? [];
 
   return (
-    <List>
+    <ul>
       {filteredContacts.map(({ id, name, number }) => {
         return <Contact key={id} id={id} name={name} number={number} />;
       })}
-    </List>
+    </ul>
   );
 };

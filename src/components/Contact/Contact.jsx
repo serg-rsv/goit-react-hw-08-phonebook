@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useDeleteContatcMutation } from 'redux/contactsApi';
-import { Button } from 'styles/Button.styled';
+
+// import { Button } from 'styles/Button.styled';
 
 export const Contact = ({ name, number, id }) => {
   const [deleteContactc, { isLoading }] = useDeleteContatcMutation();
@@ -8,13 +9,13 @@ export const Contact = ({ name, number, id }) => {
   return (
     <li>
       {name}: {number}
-      <Button
+      <button
         type="button"
         disabled={isLoading}
         onClick={() => deleteContactc(id)}
       >
         Delete
-      </Button>
+      </button>
     </li>
   );
 };

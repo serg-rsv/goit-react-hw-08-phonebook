@@ -2,7 +2,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useLogoutMutation } from 'redux/authApi';
 import { selectUser, unsetCredentials } from 'redux/authSlice';
 import { contactsApi } from 'redux/contactsApi';
-import { Button } from 'styles/Button.styled';
+
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 const UserMenu = () => {
   const dispatch = useDispatch();
@@ -16,12 +18,13 @@ const UserMenu = () => {
   };
 
   return (
-    <li>
-      <span>Logged in as {user.name} </span>
-      <Button type="button" disabled={isLoading} onClick={handleClick}>
+    <>
+      <Typography component="span">{user.email}</Typography>
+
+      <Button disabled={isLoading} onClick={handleClick}>
         Logout
       </Button>
-    </li>
+    </>
   );
 };
 

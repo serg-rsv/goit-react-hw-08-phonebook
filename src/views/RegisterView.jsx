@@ -1,9 +1,7 @@
-import { Form } from 'components/ContactForm/Form.styled';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSignupMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
-import { Button } from 'styles/Button.styled';
 
 const RegisterView = () => {
   const [formState, setFormState] = useState({
@@ -38,7 +36,7 @@ const RegisterView = () => {
   };
 
   return (
-    <Form
+    <form
       action="submit"
       onSubmit={handleSubmit}
       style={{
@@ -74,10 +72,10 @@ const RegisterView = () => {
           value={formState.password}
         />
       </label>
-      <Button type="submit" disabled={isLoading}>
+      <button type="submit" disabled={isLoading}>
         Login
-      </Button>
-    </Form>
+      </button>
+    </form>
   );
 };
 

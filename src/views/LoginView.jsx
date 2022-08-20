@@ -1,9 +1,10 @@
-import { Form } from 'components/ContactForm/Form.styled';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLoginMutation } from 'redux/authApi';
 import { setCredentials } from 'redux/authSlice';
-import { Button } from 'styles/Button.styled';
+
+// import { Button } from 'styles/Button.styled';
+// import { Form } from 'components/ContactForm/Form.styled';
 
 const LoginView = () => {
   const [formState, setFormState] = useState({
@@ -36,7 +37,7 @@ const LoginView = () => {
   };
 
   return (
-    <Form
+    <form
       onSubmit={handleSubmit}
       action="submit"
       style={{
@@ -63,10 +64,10 @@ const LoginView = () => {
           value={formState.password}
         />
       </label>
-      <Button type="submit" disabled={isLoading}>
+      <button type="submit" disabled={isLoading}>
         Login
-      </Button>
-    </Form>
+      </button>
+    </form>
   );
 };
 

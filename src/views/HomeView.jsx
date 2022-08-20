@@ -1,10 +1,15 @@
-import { Section } from 'styles/Section.styled';
+import Typography from '@mui/material/Typography';
 
 const HomeView = () => {
   return (
-    <Section>
-      <h1>Welcome to online PhoneBook app</h1>
-    </Section>
+    <>
+      <Typography align="center" variant="h3" component="h1">
+        Welcome to Aphonka
+      </Typography>
+      <Typography align="center" variant="h5" component="h1">
+        online phonebook app
+      </Typography>
+    </>
   );
 };
 

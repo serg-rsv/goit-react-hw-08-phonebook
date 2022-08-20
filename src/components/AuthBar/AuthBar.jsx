@@ -1,16 +1,29 @@
-import { NavLink } from 'react-router-dom';
+import propTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
-const AuthBar = () => {
+import Button from '@mui/material/Button';
+
+const AuthBar = ({ handleCloseNavMenu }) => {
   return (
     <>
-      <li>
-        <NavLink to="login">Login</NavLink>
-      </li>
-      <li>
-        <NavLink to="register">Register</NavLink>
-      </li>
+      <Button
+        onClick={handleCloseNavMenu}
+        sx={{ my: 2, color: 'white', display: 'block' }}
+      >
+        <Link to="login">Login</Link>
+      </Button>
+      <Button
+        onClick={handleCloseNavMenu}
+        sx={{ my: 2, color: 'white', display: 'block' }}
+      >
+        <Link to="register">Register</Link>
+      </Button>
     </>
   );
+};
+
+AuthBar.propTypes = {
+  handleCloseNavMenu: propTypes.func.isRequired,
 };
 
 export default AuthBar;

@@ -9,12 +9,12 @@ import ContactsView from 'views/ContactsView';
 import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { PublicRouter } from 'components/PublicRouter/PublicRouter';
 
-import { GlobalStyle } from 'styles/GlobalStyle';
+import { CssBaseline } from '@mui/material';
 
 export const App = () => {
   return (
     <>
-      <GlobalStyle />
+      <CssBaseline />
       <Routes>
         <Route path="/" element={<AppView />}>
           <Route
