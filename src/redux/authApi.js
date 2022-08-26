@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const authApi = createApi({
   reducerPath: 'authApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://connections-api.herokuapp.com/',
+    baseUrl: 'https://connections-api.herokuapp.com/users',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) {
@@ -15,26 +15,36 @@ export const authApi = createApi({
   endpoints: builder => ({
     login: builder.mutation({
       query: body => ({
-        url: 'users/login',
+        url: '/login',
         method: 'POST',
         body,
       }),
     }),
+    currentUser: builder.query({
+      query: () => ({
+        url: '/current',
+        method: 'GET',
+      }),
+    }),
     signup: builder.mutation({
       query: body => ({
-        url: 'users/signup',
+        url: '/signup',
         method: 'POST',
         body,
       }),
     }),
     logout: builder.mutation({
       query: () => ({
-        url: 'users/logout',
+        url: '/logout',
         method: 'POST',
       }),
     }),
   }),
 });
 
-export const { useLoginMutation, useSignupMutation, useLogoutMutation } =
-  authApi;
+export const {
+  useLoginMutation,
+  useCurrentUserQuery,
+  useSignupMutation,
+  useLogoutMutation,
+} = authApi;

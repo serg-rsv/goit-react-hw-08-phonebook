@@ -1,4 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import AppView from 'views/AppView';
 import HomeView from 'views/HomeView';
@@ -9,9 +10,18 @@ import ContactsView from 'views/ContactsView';
 import { PrivateRoute } from 'components/PrivateRoute/PrivateRoute';
 import { PublicRouter } from 'components/PublicRouter/PublicRouter';
 
+import { useCurrentUserQuery } from 'redux/authApi';
+import { selectToken } from 'redux/authSlice';
+
 import { CssBaseline } from '@mui/material';
 
 export const App = () => {
+  const token = useSelector(selectToken);
+
+  console.log(token);
+
+  useCurrentUserQuery(undefined, { skip: !token });
+
   return (
     <>
       <CssBaseline />
