@@ -19,7 +19,9 @@ import { filter } from './filterReducer';
 
 const persistConfig = {
   key: 'auth',
+  version: 1,
   storage,
+  whitelist: ['token'],
 };
 
 export const store = configureStore({
