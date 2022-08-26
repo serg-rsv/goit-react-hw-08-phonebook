@@ -3,13 +3,21 @@ import { useGetContactsQuery, useAddContactMutation } from 'redux/contactsApi';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
+
+const patternNumber =
+  '^\\+?\\d{1,4}?[-.\\s]?\\(?\\d{1,3}?\\)?[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,4}[-.\\s]?\\d{1,9}$';
+const patternName =
+  "^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$";
+const regexName = new RegExp(patternName);
+const regexNumber = new RegExp(patternNumber);
 
 export const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const [validName, setvalidName] = useState(true);
+  const [validNumber, setValidNumber] = useState(true);
   const { data: contacts } = useGetContactsQuery();
   const [addContact, { isLoading }] = useAddContactMutation();
 
@@ -17,9 +25,11 @@ export const ContactForm = () => {
     switch (name) {
       case 'name':
         setName(value);
+        setvalidName(regexName.test(value));
         break;
       case 'number':
         setNumber(value);
+        setValidNumber(regexNumber.test(value));
         break;
 
       default:
@@ -30,6 +40,13 @@ export const ContactForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+
+    if (!validName || !validNumber) return;
+
+    if (!name.trim() || !number.trim()) {
+      alert(`Empty filed. Enter smomething.`);
+      return;
+    }
 
     const normalizeName = name.toLowerCase();
     const isExist = contacts
@@ -62,27 +79,35 @@ export const ContactForm = () => {
       noValidate
     >
       <FormControl>
-        <InputLabel htmlFor="name">Name</InputLabel>
-        <Input
-          id="name"
+        <TextField
           name="name"
+          label="Name"
           value={name}
           onChange={handleChange}
           type="text"
           required
           size="small"
+          error={!validName}
+          helperText={
+            !validName &&
+            "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+          }
         />
       </FormControl>
       <FormControl>
-        <InputLabel htmlFor="numbere">Number</InputLabel>
-        <Input
-          id="number"
+        <TextField
           name="number"
+          label="Number"
           value={number}
           onChange={handleChange}
           type="tel"
           required
           size="small"
+          error={!validNumber}
+          helperText={
+            !validNumber &&
+            'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
+          }
         />
       </FormControl>
       <Button
