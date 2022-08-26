@@ -80,11 +80,11 @@ export const ContactForm = () => {
     >
       <FormControl>
         <TextField
-          name="name"
           label="Name"
-          value={name}
-          onChange={handleChange}
           type="text"
+          name="name"
+          onChange={handleChange}
+          value={name}
           required
           size="small"
           error={!validName}
@@ -110,12 +110,7 @@ export const ContactForm = () => {
           }
         />
       </FormControl>
-      <Button
-        type="submit"
-        onSubmit={handleSubmit}
-        variant="outlined"
-        disabled={isLoading}
-      >
+      <Button type="submit" variant="outlined" disabled={isLoading}>
         Add contact
       </Button>
     </Box>

@@ -3,8 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 
 import { useLoginMutation } from 'redux/authApi';
@@ -53,9 +52,8 @@ const LoginView = () => {
       }}
     >
       <FormControl>
-        <InputLabel htmlFor="email">Email</InputLabel>
-        <Input
-          id="email"
+        <TextField
+          label="Email"
           type="email"
           name="email"
           onChange={handleChange}
@@ -65,9 +63,8 @@ const LoginView = () => {
         />
       </FormControl>
       <FormControl>
-        <InputLabel htmlFor="password">Password</InputLabel>
-        <Input
-          id="password"
+        <TextField
+          label="Password"
           type="password"
           name="password"
           onChange={handleChange}

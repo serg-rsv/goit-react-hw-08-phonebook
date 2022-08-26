@@ -5,8 +5,7 @@ import { setCredentials } from 'redux/authSlice';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Input from '@mui/material/Input';
-import InputLabel from '@mui/material/InputLabel';
+import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 
 const RegisterView = () => {
@@ -54,9 +53,8 @@ const RegisterView = () => {
       }}
     >
       <FormControl>
-        <InputLabel htmlFor="name">Name</InputLabel>
-        <Input
-          id="name"
+        <TextField
+          label="Name"
           type="text"
           name="name"
           onChange={handleChange}
@@ -66,9 +64,8 @@ const RegisterView = () => {
         />
       </FormControl>
       <FormControl>
-        <InputLabel htmlFor="email">Email</InputLabel>
-        <Input
-          id="email"
+        <TextField
+          label="Email"
           type="email"
           name="email"
           onChange={handleChange}
@@ -78,9 +75,8 @@ const RegisterView = () => {
         />
       </FormControl>
       <FormControl>
-        <InputLabel htmlFor="password">Password</InputLabel>
-        <Input
-          id="password"
+        <TextField
+          label="Password"
           type="password"
           name="password"
           onChange={handleChange}
