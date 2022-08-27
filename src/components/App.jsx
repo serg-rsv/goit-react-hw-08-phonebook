@@ -18,8 +18,6 @@ import { CssBaseline } from '@mui/material';
 export const App = () => {
   const token = useSelector(selectToken);
 
-  console.log(token);
-
   useCurrentUserQuery(undefined, { skip: !token });
 
   return (
