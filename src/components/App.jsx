@@ -33,34 +33,30 @@ export const App = () => {
                 </PublicRouter>
               }
             />
-            {!isLoading && (
-              <>
-                <Route
-                  path="contacts"
-                  element={
-                    <PrivateRoute>
-                      <ContactsView />
-                    </PrivateRoute>
-                  }
-                />
-                <Route
-                  path="login"
-                  element={
-                    <PublicRouter restricted>
-                      <LoginView />
-                    </PublicRouter>
-                  }
-                />
-                <Route
-                  path="register"
-                  element={
-                    <PublicRouter restricted>
-                      <RegisterView />
-                    </PublicRouter>
-                  }
-                />
-              </>
-            )}
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute>
+                  <ContactsView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRouter restricted>
+                  <LoginView />
+                </PublicRouter>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRouter restricted>
+                  <RegisterView />
+                </PublicRouter>
+              }
+            />
           </Route>
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
