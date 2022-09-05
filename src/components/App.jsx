@@ -17,49 +17,51 @@ import { CssBaseline } from '@mui/material';
 
 export const App = () => {
   const token = useSelector(selectToken);
+  const { isLoading } = useCurrentUserQuery(undefined, { skip: !token });
 
-  useCurrentUserQuery(undefined, { skip: !token });
 
   return (
-    <>
-      <CssBaseline />
-      <Routes>
-        <Route path="/" element={<AppView />}>
-          <Route
-            index
-            element={
-              <PublicRouter>
-                <HomeView />
-              </PublicRouter>
-            }
-          />
-          <Route
-            path="contacts"
-            element={
-              <PrivateRoute>
-                <ContactsView />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="login"
-            element={
-              <PublicRouter restricted>
-                <LoginView />
-              </PublicRouter>
-            }
-          />
-          <Route
-            path="register"
-            element={
-              <PublicRouter restricted>
-                <RegisterView />
-              </PublicRouter>
-            }
-          />
-        </Route>
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </>
+    !isLoading && (
+      <>
+        <CssBaseline />
+        <Routes>
+          <Route path="/" element={<AppView />}>
+            <Route
+              index
+              element={
+                <PublicRouter>
+                  <HomeView />
+                </PublicRouter>
+              }
+            />
+            <Route
+              path="contacts"
+              element={
+                <PrivateRoute>
+                  <ContactsView />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRouter restricted>
+                  <LoginView />
+                </PublicRouter>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRouter restricted>
+                  <RegisterView />
+                </PublicRouter>
+              }
+            />
+          </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </>
+    )
   );
 };
