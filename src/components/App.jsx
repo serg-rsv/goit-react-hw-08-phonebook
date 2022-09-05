@@ -19,6 +19,7 @@ export const App = () => {
   const token = useSelector(selectToken);
   const { isLoading } = useCurrentUserQuery(undefined, { skip: !token });
 
+
   return (
     !isLoading && (
       <>
